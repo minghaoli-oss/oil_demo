@@ -18,3 +18,13 @@ function loadGeoJSON() {
       });
   }
   loadGeoJSON();
+
+  let allMarkers = [];
+
+function searchOilField() {
+  const keyword = document.getElementById('search-input').value.toLowerCase();
+  allMarkers.forEach(marker => {
+    const name = marker.getExtData().name.toLowerCase();
+    marker.setVisible(name.includes(keyword));
+  });
+}
