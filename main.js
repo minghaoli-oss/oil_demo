@@ -46,3 +46,30 @@ const map = new AMap.Map('map-container', {
   center: [105, 35]
 });
 loadAndRenderData(); // 启动数据加载
+
+function showAddForm() {
+    document.getElementById('edit-form').style.display = 'block';
+  }
+  
+  function saveNewField() {
+    const newFeature = {
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: map.getCenter()
+      },
+      properties: {
+        name: document.getElementById('field-name').value,
+        储量: parseInt(document.getElementById('reserves').value),
+        type: "常规油田"
+      }
+    };
+    
+    // 创建新标记
+    const marker = new AMap.Marker({
+      position: newFeature.geometry.coordinates,
+      content: `<div class="marker">${newFeature.properties.name}</div>`
+    });
+    allMarkers.push(marker);
+    map.add(marker);
+  }

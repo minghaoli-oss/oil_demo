@@ -9,7 +9,17 @@
         <input type="text" id="search-input" placeholder="输入油田名称">
         <button onclick="searchOilField()">搜索</button>
       </div>
+    <!-- 添加数据管理面板 -->
+    <div class="data-panel">
+    <button onclick="showAddForm()">添加新油田</button>
+    <div id="edit-form" style="display:none;">
+      <input type="text" id="field-name" placeholder="油田名称">
+      <input type="number" id="reserves" placeholder="储量（万吨）">
+      <button onclick="saveNewField()">保存</button>
+    </div>
+    </div>
   <div id="map-container" style="width:100vw; height:100vh;"></div>
+  
   <script src="https://webapi.amap.com/maps?v=2.0&key=836660cbd0f27dcd6272269c8f969585"></script>
   <script src="main.js"></script>
 </body>
