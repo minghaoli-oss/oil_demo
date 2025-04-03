@@ -28,3 +28,25 @@ function searchOilField() {
     marker.setVisible(name.includes(keyword));
   });
 }
+
+// 修改标记创建代码
+data.features.forEach(feature => {
+    const marker = new AMap.Marker({
+      position: feature.geometry.coordinates,
+      content: `<div class="marker">${feature.properties.name}</div>`
+    });
+    
+    marker.on('click', () => {
+      new AMap.InfoWindow({
+        content: `
+          <h3>${feature.properties.name}</h3>
+          <p>类型：${feature.properties.type}</p>
+          <p>储量：${feature.properties.储量}万吨</p>
+        `
+      }).open(map, marker.getPosition());
+    });
+    
+    marker.setExtData(feature.properties);
+    allMarkers.push(marker);
+    map.add(marker);
+  });
